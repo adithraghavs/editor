@@ -248,19 +248,6 @@ function runit(editorElem, outputElem) {
         endRun();
       }
       output.insert(err.toString());
-      if (prog.match(/'(.*?)!'/) || prog.match(/"(.*?)!"$/)) {
-        output.insert("\nLooks like you're missing a quote or a bracket.");
-      } else if (
-        err.toString().match(/^NameError: name '(.*?)' is not defined$/)
-      ) {
-        output.insert(
-          "\nLooks like you're calling a variable that doesn't exist."
-        );
-      } else if (prog.match(/\((.*?)!)/) || prog.match(/"!((.*?)\)/)) {
-        output.insert('\nHmm... Aren"t you missing a parenthesis?');
-      } else if (prog.match(/^if (.*?) = (.*?):$/)) {
-        output.insert("\nWait... Shouldn't you be using double equals?");
-      }
       $(".run-button").show();
       $(".stop-button").hide();
     }
